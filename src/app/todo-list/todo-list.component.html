@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 col-sm-12 offset-md-3">
         <div *ngIf="!todoListData.length; else loadAccordion" class="alert alert-danger" role="alert">
-            To Do List is not available, please try again !!
+            {{alertMessage}}
         </div>
         <ng-template #loadAccordion>
             <div class="accordion" *ngFor="let userId of getTodoListUserIds()" id="accordion-{{userId}}">
@@ -19,20 +19,20 @@
                             <div class="row gx-5">
                                 <div class="col-md-6">
                                     <span class="col-title">Complete Tasks</span>
-                                    <div class="row" *ngFor="let task of userTodoList[userId]">
-                                        <div class="card todo-card complete-card" *ngIf="task.completed">
-                                            <span class="card-title">{{ task.title }}</span>
-                                            <p class="card-text">Completed: {{ task.completed }}</p>
+                                    <div class="row" *ngFor="let todoItem of userTodoList[userId]">
+                                        <div class="card todo-card complete-card" *ngIf="todoItem.completed">
+                                            <span class="card-title">{{ todoItem.title }}</span>
+                                            <p class="card-text">Completed: {{ todoItem.completed }}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <span class="col-title">Pending Tasks</span>
-                                    <div class="row" *ngFor="let task of userTodoList[userId]">
-                                        <div class="card todo-card pending-card" *ngIf="!task.completed">
-                                            <span class="card-title">{{ task.title }}</span>
-                                            <p class="card-text">Completed: {{ task.completed }}</p>
+                                    <div class="row" *ngFor="let todoItem of userTodoList[userId]">
+                                        <div class="card todo-card pending-card" *ngIf="!todoItem.completed">
+                                            <span class="card-title">{{ todoItem.title }}</span>
+                                            <p class="card-text">Completed: {{ todoItem.completed }}</p>
                                         </div>
                                     </div>
                                 </div>
