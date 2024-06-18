@@ -1,0 +1,28 @@
+.todo-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 8px 0;
+}
+
+.complete-card {
+  background-color: #28a745;
+}
+
+.pending-card {
+  background-color: #ffc107;
+}
+
+.card-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.col-title {
+  font-weight: bold;
+}
+
+.accordion {
+  margin: 10px;
+}
