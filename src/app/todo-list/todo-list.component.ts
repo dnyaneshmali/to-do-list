@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListModel } from './todo-list-model';
-import { TodoListService } from './todo-list.service';
 import { CommonModule } from '@angular/common';
+import { ToDoListDataStore } from './todo-list-data.store';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,20 +10,22 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   standalone: true,
   host: { ngSkipHydration: 'true' },
+  providers: [ToDoListDataStore]
 })
 export class TodoListComponent implements OnInit {
   todoListData: TodoListModel[] = [];
   userTodoList: { [key: number]: TodoListModel[] } = {};
   alertMessage: string = '';
 
-  constructor(private todoListService: TodoListService) {}
+  constructor(private toDoListDataStore: ToDoListDataStore) {}
 
   ngOnInit(): void {
     this.getTodoList();
   }
 
   getTodoList() {
-    this.todoListService.getTodoList().subscribe((todoListData) => {
+    this.toDoListDataStore.getToDoList();
+    this.toDoListDataStore.selectToDoList$.subscribe((todoListData) => {
       if (todoListData.length) {
         this.todoListData = todoListData;
         this.getTasksByUser();
